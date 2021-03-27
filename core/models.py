@@ -11,3 +11,13 @@ class user(models.Model):
 
    class Meta:
       db_table = "user"
+
+class products(models.Model):
+
+   username = models.CharField(max_length = 50)
+   productname = models.CharField(max_length = 50)
+   website = models.CharField(max_length = 50)
+   link = models.CharField(max_length = 50)
+
+   class Meta:
+      db_table = "products"
