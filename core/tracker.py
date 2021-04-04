@@ -63,6 +63,15 @@ def send_mail():
   server.quit()
 
 def mymain(link):
+    # send a request to fetch HTML of the page
+  response = requests.get(link, headers=headers)
+
+  # create the soup object
+  soup = BeautifulSoup(response.content, 'html.parser')
+
+  # change the encoding to utf-8
+  soup.encode('utf-8')
+  #print(soup.prettify())
 	pass
 
 #loop that allows the program to regularly check for prices
