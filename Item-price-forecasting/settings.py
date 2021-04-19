@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication',
     'jwt', #pyjwt
-    'corsheaders' 
+    'corsheaders' ,
+    'prediction',
+    'core',
 
 ]
 
