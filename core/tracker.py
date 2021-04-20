@@ -9,27 +9,39 @@ from url_parser import parse_url, get_url, get_base_url
 
 def getFlipkartProduct(soup,url_object):
   price = soup.find("", {"class": "_30jeq3 _16Jk6d"}).get_text()
-  pname = soup.find("", {"class": "B_NuCI"}).get_text()
-  val = {"price" : float(price[1:]), "pid": url_object.query["pid"]}
+  name = soup.find("", {"class": "B_NuCI"}).get_text()
+  val = {"price" : float(price[1:]), "pid": url_object.query["pid"],"productName":name}
   return val
 
 def getBewakoofProduct(soup,url_object):
   title = soup.find(id= "testProName").get_text()
   price = soup.find(id = "testNetProdPrice").get_text()
-  val = {"price" : float(price), "pid": title}
+  val = {"price" : float(price), "pid": title, "productName":title}
   return val
 
 def getAlibabaProduct(soup,url_object):
   price = soup.find("", {"class": "pre-inquiry-price"}).get_text()
   name = soup.find("", {"class": "module-pdp-title"}).get_text()
-  val = {"price" : float(price[1:]), "pid": name }
+  val = {"price" : float(price[1:]), "pid": name, "productName":name }
   return val
 
 def getSnapdealProduct(soup,url_object):
     pid = url_object.file
+    name = soup.find("",{"class":"pdp-e-i-head"}).get_text()
     price = soup.find("",{"class": "payBlkBig"}).get_text()
-    val ={"price":float(price),"pid":pid}
+    val ={"price":float(price),"pid":pid, "productName":name}
     return val
+
+def getAmazonProduct(soup,url_object):
+  name = soup.find(id="productTitle").get_text()
+  price = None
+  print(url_object)
+  if(soup.find(id="priceblock_ourprice")==None):
+    price = soup.find(id="priceblock_dealprice").get_text()
+  else:
+    price = soup.find(id="priceblock_ourprice").get_text()
+  val = {"price":float(price[2:].replace(',','')),"pid":url_object.query['smid'],"productName":name }
+  return val
 
 def parseProductPage(URL):
   headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36' }
@@ -57,6 +69,11 @@ def parseProductPage(URL):
   elif(domain=='snapdeal'):
     ret = getSnapdealProduct(soup,URL_OBJECT)  
     ret['domain'] = domain
+    return ret
+  
+  elif(domain=='amazon'):
+    ret = getAmazonProduct(soup,URL_OBJECT)
+    ret['domain']=domain
     return ret
 
   else:
