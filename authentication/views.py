@@ -39,19 +39,18 @@ class LoginView(GenericAPIView):
             'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
             'iat':datetime.datetime.utcnow()
         }
-        print(settings.JWT_SECRET)
 
         token = jwt.encode(payload, settings.JWT_SECRET, algorithm='HS256')
 
-        response=Response(status=status.HTTP_200_OK)
+        response=Response(data=token, status=status.HTTP_200_OK)
 
-        response.set_cookie(key='jwt', value=token, httponly=True)
+        # response.set_cookie(key='jwt', value=token, httponly=True, samesite='None', secure=True)
         return response
 
 
 class Userview(GenericAPIView):
     def get(self, request):
-        token=request.COOKIES.get('jwt')
+        token=request.data['token']
         if not token:
             return Response(status=status.HTTP_403_FORBIDDEN)
 
@@ -61,7 +60,6 @@ class Userview(GenericAPIView):
             return Response(status=status.HTTP_403_FORBIDDEN)
         
         user = User.objects.filter(username=payload['username'])
-        print(user)
 
         serializer=Userserializer(user, many=True)
         return(Response(serializer.data, status=status.HTTP_200_OK))
