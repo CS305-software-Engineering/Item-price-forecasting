@@ -40,13 +40,25 @@ def parseProductPage(URL):
   soup = BeautifulSoup(page.content,'html.parser')
 
   if(domain=='flipkart'):
-    return getFlipkartProduct(soup,URL_OBJECT)
+    ret = getFlipkartProduct(soup,URL_OBJECT)
+    ret['domain'] = domain
+    return ret
+    
   elif(domain=='bewakoof'):
-    return getBewakoofProduct(soup,URL_OBJECT)
+    ret = getBewakoofProduct(soup,URL_OBJECT)
+    ret['domain'] = domain
+    return ret
+
   elif(domain=='alibaba'):
-    return getAlibabaProduct(soup,URL_OBJECT)
+    ret = getAlibabaProduct(soup,URL_OBJECT)
+    ret['domain'] = domain
+    return ret
+
   elif(domain=='snapdeal'):
-    return getSnapdealProduct(soup,URL_OBJECT)  
+    ret = getSnapdealProduct(soup,URL_OBJECT)  
+    ret['domain'] = domain
+    return ret
+
   else:
     print('Incompatible Website URL')
     return {}    
