@@ -1,2 +1,8 @@
 .env
 .vscode
+env
+.gcloudignore
+static
+app.yaml
+cloud_sql_proxy.exe
+
