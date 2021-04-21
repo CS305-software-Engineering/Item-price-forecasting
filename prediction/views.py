@@ -16,7 +16,7 @@ class ProductView(APIView):
     def get(self, request):
         #e=Sheet.objects.get(title='t3')
         #(make_json(e.sheet))[1]
-        mydetail = [ {"username": detail.username,"productname": detail.productname, "domain": detail.domain, "pid": detail.pid}
+        mydetail = [ {"username": detail.username,"productName": detail.productName, "domain": detail.domain, "pid": detail.pid}
         for detail in product.objects.all()] 
         return Response(mydetail) 
     def post(self, request):
@@ -24,18 +24,18 @@ class ProductView(APIView):
         #print(reqdata)
         url = str(reqdata['url'])
         username = reqdata['username']
-        #print(url)
         trackerObj = parseProductPage(url)
-        
+        print(trackerObj)
         data = {
             "username": username,
-            "productName": trackerObj['productName'],
+            "productName": trackerObj['productName'].replace("\n","").replace("\t",""),
             "domain": trackerObj['domain'],
             "pid": trackerObj['pid']
         }
         serializer = ProductSerializer(data=data)
         print(data)
         if serializer.is_valid():
+            print("test for save")
             serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
         #return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

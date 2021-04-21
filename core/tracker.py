@@ -8,13 +8,11 @@ from url_parser import parse_url, get_url, get_base_url
 
 
 def getFlipkartProduct(soup,url_object):
-  #print(soup)
-  #text_file = open("Output.txt", "w", encoding="utf-8")
-  #text_file.write(str(soup))
-  #text_file.close()
-  price = soup.find("", {"class": "_30jeq3 _16Jk6d"}).get_text()
-  pname = soup.find("", {"class": "B_NuCI"}).get_text()
-  val = {"price" : float(price[1:].replace(',','')), "pid": url_object.query["pid"]}
+  priceObj = soup.find("div", {"class": "_30jeq3 _16Jk6d"})
+  price = priceObj.get_text() if priceObj != None else 'no price'
+  pnameObj = soup.find("span", {"class": "B_NuCI"})
+  pname = pnameObj.get_text() if pnameObj != None else 'no pname'
+  val = {"price" : float(price[1:].replace(',','')), "pid": url_object.query["pid"], "productName":pname}
   return val
 
 def getBewakoofProduct(soup,url_object):
@@ -24,15 +22,15 @@ def getBewakoofProduct(soup,url_object):
   return val
 
 def getAlibabaProduct(soup,url_object):
-  price = soup.find("", {"class": "pre-inquiry-price"}).get_text()
-  name = soup.find("", {"class": "module-pdp-title"}).get_text()
+  price = soup.find("span", {"class": "pre-inquiry-price"}).get_text()
+  name = soup.find("h1", {"class": "module-pdp-title"}).get_text()
   val = {"price" : float(price[1:]), "pid": name, "productName":name }
   return val
 
 def getSnapdealProduct(soup,url_object):
     pid = url_object.file
-    name = soup.find("",{"class":"pdp-e-i-head"}).get_text()
-    price = soup.find("",{"class": "payBlkBig"}).get_text()
+    name = soup.find("h1",{"class":"pdp-e-i-head"}).get_text()
+    price = soup.find("span",{"class": "payBlkBig"}).get_text()
     val ={"price":float(price),"pid":pid, "productName":name}
     return val
 
@@ -44,7 +42,7 @@ def getAmazonProduct(soup,url_object):
     price = soup.find(id="priceblock_dealprice").get_text()
   else:
     price = soup.find(id="priceblock_ourprice").get_text()
-  val = {"price":float(price[2:].replace(',','')),"pid":url_object.query['smid'],"productName":name }
+  val = {"price":float(price[2:].replace(',','')),"pid":url_object.dir,"productName":name }
   return val
 
 def parseProductPage(URL):

@@ -4,9 +4,9 @@ from . models import product
 
 class ProductSerializer(serializers.ModelSerializer):
     username = serializers.CharField(max_length = 50)
-    productName = serializers.CharField(max_length = 50)
+    productName = serializers.CharField(max_length = 500)
     domain = serializers.CharField(max_length = 50)
-    pid = serializers.CharField(max_length = 50)
+    pid = serializers.CharField(max_length = 500)
     
 
     class Meta:
