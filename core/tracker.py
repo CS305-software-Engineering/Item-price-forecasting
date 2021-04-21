@@ -8,9 +8,13 @@ from url_parser import parse_url, get_url, get_base_url
 
 
 def getFlipkartProduct(soup,url_object):
+  #print(soup)
+  #text_file = open("Output.txt", "w", encoding="utf-8")
+  #text_file.write(str(soup))
+  #text_file.close()
   price = soup.find("", {"class": "_30jeq3 _16Jk6d"}).get_text()
-  name = soup.find("", {"class": "B_NuCI"}).get_text()
-  val = {"price" : float(price[1:]), "pid": url_object.query["pid"],"productName":name}
+  pname = soup.find("", {"class": "B_NuCI"}).get_text()
+  val = {"price" : float(price[1:].replace(',','')), "pid": url_object.query["pid"]}
   return val
 
 def getBewakoofProduct(soup,url_object):
@@ -59,6 +63,7 @@ def parseProductPage(URL):
   elif(domain=='bewakoof'):
     ret = getBewakoofProduct(soup,URL_OBJECT)
     ret['domain'] = domain
+    print(ret)
     return ret
 
   elif(domain=='alibaba'):
