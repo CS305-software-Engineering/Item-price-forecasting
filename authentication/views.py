@@ -49,7 +49,7 @@ class LoginView(GenericAPIView):
 
 
 class Userview(GenericAPIView):
-    def get(self, request):
+    def post(self, request):
         token=request.data['token']
         if not token:
             return Response(status=status.HTTP_403_FORBIDDEN)

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import pymysql
 from pathlib import Path
 from decouple import config
 import os
@@ -43,8 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'authentication',
-    'jwt', #pyjwt
-    'corsheaders' ,
+    'jwt',  # pyjwt
+    'corsheaders',
     'prediction',
     'core',
 
@@ -86,9 +87,7 @@ WSGI_APPLICATION = 'Item-price-forecasting.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 
-
-import pymysql
-pymysql.version_info=(1,4,6,'final',0)
+pymysql.version_info = (1, 4, 6, 'final', 0)
 pymysql.install_as_MySQLdb()
 
 if os.getenv('GAE_APPLICATION', None):
@@ -111,11 +110,21 @@ else:
     #
     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.mysql',
+    #         'HOST': '127.0.0.1',
+    #         'PORT': '3306',
+    #         'USER': config('database_admin'),
+    #         'PASSWORD': config('database_pwd'),
+    #         'NAME': 'User',
+    #     }
+    # }
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -148,9 +157,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-#JWT_SECRET
+# JWT_SECRET
 
-JWT_SECRET=config('JWT_SECRET')
+JWT_SECRET = config('JWT_SECRET')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -160,8 +169,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
-SESSION_COOKIE_SECURE =True
+SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
-
