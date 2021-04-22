@@ -14,11 +14,13 @@ class ProductView(APIView):
     
     serializer_class = ProductSerializer
     def get(self, request):
-        #e=Sheet.objects.get(title='t3')
-        #(make_json(e.sheet))[1]
+        req = request.data
+        id1 = str(req['username'])
+        print(request.data)
         mydetail = [ {"username": detail.username,"productName": detail.productName, "domain": detail.domain, "pid": detail.pid, "url": detail.url}
-        for detail in product.objects.all()] 
-        return Response(mydetail) 
+        for detail in product.objects.filter(username = id1)] 
+        return Response(mydetail)
+
     def post(self, request):
         reqdata=request.data
         #print(reqdata)
