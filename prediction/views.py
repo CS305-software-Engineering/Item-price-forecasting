@@ -16,7 +16,7 @@ class ProductView(APIView):
     def get(self, request):
         #e=Sheet.objects.get(title='t3')
         #(make_json(e.sheet))[1]
-        mydetail = [ {"username": detail.username,"productName": detail.productName, "domain": detail.domain, "pid": detail.pid}
+        mydetail = [ {"username": detail.username,"productName": detail.productName, "domain": detail.domain, "pid": detail.pid, "url": detail.url}
         for detail in product.objects.all()] 
         return Response(mydetail) 
     def post(self, request):
@@ -30,7 +30,8 @@ class ProductView(APIView):
             "username": username,
             "productName": trackerObj['productName'].replace("\n","").replace("\t",""),
             "domain": trackerObj['domain'],
-            "pid": trackerObj['pid']
+            "pid": trackerObj['pid'],
+            "url": url
         }
         serializer = ProductSerializer(data=data)
         print(data)
@@ -39,3 +40,11 @@ class ProductView(APIView):
             serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
         #return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+def makeDateArray():
+    import datetime
+
+    today = datetime.datetime.now()
+    today += datetime.timedelta(1)
+    d2 = today.strftime("%B %d")
+    print("d2 =", d2)

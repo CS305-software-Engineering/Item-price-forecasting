@@ -7,11 +7,11 @@ class ProductSerializer(serializers.ModelSerializer):
     productName = serializers.CharField(max_length = 500)
     domain = serializers.CharField(max_length = 50)
     pid = serializers.CharField(max_length = 500)
-    
+    url = serializers.CharField(max_length = 10000)
 
     class Meta:
         model = product
-        fields = ['username', 'productName', 'domain', 'pid']
+        fields = ['username', 'productName', 'domain', 'pid', 'url']
 
     #def validate(self, attrs):
     #    if product.objects.filter(username=attrs['username']).exists():
@@ -20,3 +20,5 @@ class ProductSerializer(serializers.ModelSerializer):
 
     #def create(self, data):
     #    return product.objects.create_user(**data)
+
+

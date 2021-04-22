@@ -8,6 +8,11 @@ class product(models.Model):
    productName = models.CharField(max_length = 500)
    domain = models.CharField(max_length = 50)
    pid = models.CharField(max_length = 500)
+   url = models.CharField(max_length = 10000, default="")
+
+   def __str__(self):
+      return self.productName
+   
 
 
 class price(models.Model):
