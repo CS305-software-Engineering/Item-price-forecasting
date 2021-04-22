@@ -14,9 +14,9 @@ class ProductView(APIView):
     
     serializer_class = ProductSerializer
     def get(self, request):
-        req = request.data
-        id1 = str(req['username'])
-        print(request.data)
+        #print(request.GET)
+        req = request.GET.get('username')
+        id1 = str(req)
         mydetail = [ {"username": detail.username,"productName": detail.productName, "domain": detail.domain, "pid": detail.pid, "url": detail.url}
         for detail in product.objects.filter(username = id1)] 
         return Response(mydetail)

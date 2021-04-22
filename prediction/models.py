@@ -13,8 +13,6 @@ class product(models.Model):
    def __str__(self):
       return self.productName
    
-
-
 class price(models.Model):
 
    domain = models.CharField(max_length = 50)
