@@ -5,4 +5,10 @@ env
 static
 app.yaml
 cloud_sql_proxy.exe
+.vscode
+.env
+output.html
+env
+static
+
 
