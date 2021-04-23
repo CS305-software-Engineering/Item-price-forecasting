@@ -20,7 +20,7 @@ from prediction.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('authentication.urls')),
-    path('api/wishlist/', ProductView.as_view(), name="Wishlist"), 
-    path('api/trackedprices/', TrackedPriceView.as_view(), name="Tracked Prices"), 
-    path('api/predprices/', PredictedPriceView.as_view(), name="Predicted Prices"), 
+    path('api/wishlist/', ProductView.as_view(), name="Wishlist"),
+    path('api/trackedprices', TrackedPriceView.as_view(), name="Tracked Prices"),
+    path('api/predprices', PredictedPriceView.as_view(), name="Predicted Prices"),
 ]
