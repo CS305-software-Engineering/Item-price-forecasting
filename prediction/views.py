@@ -20,7 +20,7 @@ class ProductView(APIView):
 
     def get(self, request):
         mydetail = [{"username": detail.username, "productName": detail.productName, "domain": detail.domain, "pid": detail.pid, "url": detail.url}
-                    for detail in product.objects.filter(username=(request.data)['username'])]
+                    for detail in product.objects.filter(username=(request.GET.get('username')))]
         return Response(mydetail)
 
     def post(self, request):
