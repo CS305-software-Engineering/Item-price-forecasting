@@ -5,8 +5,6 @@ from prediction.models import price, product
 
 def updatePrice():
     obj = product.objects.raw("SELECT pid, domain, url FROM prediction_product").distinct
-    for ob in obj:
-        
     return obj
 
 print(updatePrice())
