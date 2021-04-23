@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'authentication',
     'jwt',  # pyjwt
     'corsheaders',
-    'prediction',
+    'prediction.apps.PredictionConfig',
     'core',
 
 ]
