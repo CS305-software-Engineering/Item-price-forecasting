@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from core.tracker import parseProductPage
 import jwt, datetime
-from . models import *
-from . serializers import *
+from .models import product, price
+from .serializers import *
 from django.core import serializers
 
 # Create your views here.
