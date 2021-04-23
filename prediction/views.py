@@ -7,6 +7,9 @@ import jwt, datetime
 from . models import *
 from . serializers import *
 from django.core import serializers
+from . prediction import predictionFunc
+import pandas as pd 
+
 
 # Create your views here.
 class ProductView(APIView):
@@ -14,13 +17,12 @@ class ProductView(APIView):
     
     serializer_class = ProductSerializer
     def get(self, request):
-        #print(request.GET)
-        req = request.GET.get('username')
-        id1 = str(req)
+        #e=Sheet.objects.get(title='t3')
+        #(make_json(e.sheet))[1]
+        #print(request.data)
         mydetail = [ {"username": detail.username,"productName": detail.productName, "domain": detail.domain, "pid": detail.pid, "url": detail.url}
-        for detail in product.objects.filter(username = id1)] 
-        return Response(mydetail)
-
+        for detail in product.objects.filter(username=(request.data)['username'])] 
+        return Response(mydetail) 
     def post(self, request):
         reqdata=request.data
         #print(reqdata)
@@ -50,3 +52,26 @@ def makeDateArray():
     today += datetime.timedelta(1)
     d2 = today.strftime("%B %d")
     print("d2 =", d2)
+class TrackedPriceView(APIView):
+    queryset=price.objects.all()
+    
+    serializer_class = PriceSerializer
+    def get(self, request):
+        mydetail = [ {"date": detail.date,"price": detail.price}
+        for detail in price.objects.filter(pid=(request.data)['pid'])] 
+        return Response(mydetail) 
+
+class PredictedPriceView(APIView):
+    queryset=price.objects.all()
+    
+    serializer_class = PriceSerializer
+    def get(self, request):
+        mydetail = [ {"date": detail.date,"price": detail.price}
+        for detail in price.objects.filter(pid=(request.data)['pid'])] 
+        collectedPrices = []
+        for priceObj in mydetail:
+            collectedPrices.append(priceObj["price"])
+        predictedPrices = predictionFunc(mydetail)
+        #predObj = [ {"price": detail.price}
+        #for detail in predictedPrices] 
+        return Response(predictedPrices) 
