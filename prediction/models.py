@@ -17,7 +17,7 @@ class price(models.Model):
 
    domain = models.CharField(max_length = 50)
    pid = models.CharField(max_length = 500)
-   cost = models.DecimalField(max_digits=12, decimal_places=3, default=0)
+   price = models.DecimalField(max_digits=12, decimal_places=3, default=0)
    date = models.DateField(default = "2000-01-01")
 
    class Meta:
