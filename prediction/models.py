@@ -20,5 +20,8 @@ class price(models.Model):
    price = models.DecimalField(max_digits=12, decimal_places=3, default=0)
    date = models.DateField(default = "2000-01-01")
 
+   def __str__(self):
+      return self.pid
+
    class Meta:
       db_table = "price"
