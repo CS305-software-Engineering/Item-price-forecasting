@@ -69,15 +69,15 @@ const AddProduct = () => {
             <Form>
                 <div className="add-product">
                     <div className="add-product-header">
-                        Allow <span style={{ color: "#5CDB95" }}>WISHIMART</span> to let you become a Smart Shopper!
+                        Allow <span style={{ color: "#08b3e4" }}>WISHIMART</span> to let you become a Smart Shopper!
                     </div>
                     <div className="add-product-subheader">
                         We allow our customers to:
                     </div>
-                    <div className="add-product-main" style={{color: "#5CDB95"}}>
-                        <CheckCircleFilled style={{ color: "#EDF5E1" }} /> Predict Future Prices<span style={{ color: "#05386B" }}>.....</span>
-                        <CheckCircleFilled style={{ color: "#EDF5E1" }} /> Track Product Prices<span style={{ color: "#05386B" }}>.....</span>
-                        <CheckCircleFilled style={{ color: "#EDF5E1" }} /> Track Product Stock<span style={{ color: "#05386B" }}>.....</span>
+                    <div className="add-product-main" style={{color: "#05386B"}}>
+                        <CheckCircleFilled style={{ color: "#08b3e4" }} /> Predict Future Prices<span style={{ color: "#eff9fc" }}>.....</span>
+                        <CheckCircleFilled style={{ color: "#08b3e4" }} /> Track Product Prices<span style={{ color: "#eff9fc" }}>.....</span>
+                        <CheckCircleFilled style={{ color: "#08b3e4" }} /> Track Product Stock<span style={{ color: "#eff9fc" }}>.....</span>
                     </div>
                     <div className="add-product-grid-1">
                         <div className="add-product-grid-1-item-1">

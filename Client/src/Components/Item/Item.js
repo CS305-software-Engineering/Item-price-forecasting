@@ -9,29 +9,19 @@ export default function Item(props) {
   console.log('lolwat', props.pid);
   return (
     <div
-      hoverable
-      style={{
-        width: "100%",
-        borderRadius: "10px",
-        padding: "0px",
-        backgroundColor: "#EDF5E1",
-        borderRadius: "0px",
-        boxShadow: "0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)",
-        maxWidth: "420px",
-      }}
-      size="small"
+      className="wish-card"
     >
       <div style={{ flex: 1, flexDirection: "column", alignItems: "center" }}>
         <div style={{display: "grid", gridTemplateColumns: "1fr 10fr"}}>
           <div><img src={amazon} alt="amazon.in" style={{width:"57px",height:"57px"}}/></div>
-          <div className="productname">{props.productName.substring(0, 60)}...</div>
+          <div><div className="productname">{props.productName.substring(0, 60)}...</div></div>
         </div>
-        <Button type="primary" className="wishlist-button" style={{width: "30%"}}>
+        <Button type="primary" className="wishlist-button" style={{width: "32%",borderLeft: "0px"}}>
           <a href={props.url} target="_blank">
             Product Website
           </a>
         </Button>
-        <Button type="primary" className="wishlist-button" style={{width: "40%"}}>
+        <Button type="primary" className="wishlist-button" style={{width: "36%",borderLeft: "0px",borderRight: "0px"}}>
           <Link to={{
             pathname: '/predict',
             customProps: {
@@ -41,7 +31,7 @@ export default function Item(props) {
             Predict Price
           </Link>
         </Button>
-        <Button type="primary" className="wishlist-button" style={{width: "30%"}}>
+        <Button type="primary" className="wishlist-button" style={{width: "32%",borderRight: "0px"}}>
           <a href={props.url} target="_blank">
             Delete Product
           </a>

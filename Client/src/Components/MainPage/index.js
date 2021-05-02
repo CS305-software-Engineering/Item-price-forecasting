@@ -101,7 +101,7 @@ const index = () => {
           <Tabs
             size="large"
             tabBarExtraContent={OperationsSlot}
-            tabBarStyle={{ color: "#379683", fontWeight: "700" }}
+            tabBarStyle={{ color: "#05386B", fontWeight: "700" }}
           >
             <TabPane tab="MY WISHLIST" key="1" style={{ marginLeft: "20px" }}>
               <Wishlist />

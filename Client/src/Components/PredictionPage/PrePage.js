@@ -54,12 +54,12 @@ const PrePage = (props) => {
                     </div>
                 </div>
                 <div className="lower-main-predict">
-                    <Button type="primary" style={{backgroundColor: "black",borderColor: "black"}}>
+                    <Button type="primary" className="wishlist-button" style={{width: "250px"}}>
                         <Link to="/">
                             Back to Wishlist
                     </Link>
                     </Button>
-                    <Button type="primary" style={{backgroundColor: "black",borderColor: "black"}}>
+                    <Button type="primary" className="wishlist-button" style={{width: "250px"}}>
                         <a href={link} target="_blank">
                             Product Website
                     </a>

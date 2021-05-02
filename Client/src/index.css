@@ -7,7 +7,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: #24292e;
-  background-color: #05386B;
+  background-color: #eff9fc;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -325,21 +325,21 @@ button + button {
 
 .main-predict {
   width: 70%;
-  background-color: #EDF5E1 ;
-  border: 0px solid rgba(0, 0, 0, 0.8);
   border-radius: 4px;
   font-size: 20px;
   text-align: center;
   color: #1f396b;
   font-style: unset;
-  box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #eff9fc;
+  box-shadow: 4px 4px 4px 0 rgba(8, 179, 228, 0.3);
+  border: 1px solid #c7c7c7;
 }
 
 .main-predict:hover {
-  box-shadow: 0 12px 20px 0 rgba(255, 255, 255,0.24), 0 17px 50px 0 rgba(255, 255, 255,0.19);
+  box-shadow: 6px -6px 6px 0 rgba(8, 179, 228, 0.3);
 }
 
 .upper-main-predict{
@@ -393,8 +393,21 @@ button + button {
   text-align: center;
 } 
 
+.wish-card {
+  width: 100%;
+  padding: 0px;
+  background-color: #eff9fc;
+  box-shadow: 4px -4px 4px 0 rgba(8, 179, 228, 0.3);
+  max-width: 420px;
+  border: 1px solid #c7c7c7;
+}
+
+.wish-card:hover {
+  box-shadow: 6px -6px 6px 0 rgba(8, 179, 228, 0.3);
+}
+
 .productname {
-  padding: 5px;
+  padding: 5px 10px;
   overflow: hidden;
   font-family: 'Raleway',sans-serif; 
   color: #05386B;
@@ -406,39 +419,44 @@ button + button {
   width: 33.33%;
   margin: 0px;
   border-radius:0px;
-  background-color: #000000;
-  border-color: #ffffff;
+  background-color: #08b3e4;
+  border-color: #eff9fc;
+  border-top: 0px;
+  border-bottom: 0px;
 }
 
 .wishlist-button:hover {
-  background-color: #EDF5E1;
-  border-color: #EDF5E1;
-  color: #000000;
+  background-color: #69747a;
+  border-color: #eff9fc;
+  font-weight: 600;
 }
 
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-  color: #05386B !important; 
+  color: #eff9fc !important; 
   font-weight: 700;
 }
 
 .ant-tabs-ink-bar {
   position: absolute;
-  background: #379683;
+  background: #05386B;
   pointer-events: none;
 }
 
 .button-LOGOUT {
   margin-right: 25px;
-  color: #EDF5E1 !important; 
+  color: #eff9fc !important; 
   font-weight: 700;
   background-color: #05386B !important;
 }
 
 .ant-tabs-nav {
-  background-color: #EDF5E1 !important;
+  background-color: #08b3e4ff !important;
 }
 .ant-tabs-tab:hover {
-  color: #05386B !important;
+  color: #eff9fc !important;
+}
+.ant-tabs-tab:active {
+  color: #eff9fc !important;
 }
 
 .add-product {
@@ -454,36 +472,35 @@ button + button {
 }
 
 .add-product-input {
-  background-color: #EDF5E1;
+  background-color: #eff9fc;
+  box-shadow: -4px 4px 4px 0 rgba(8, 179, 228, 0.3);
   padding: .45rem;
   font-size: 15px;
   width: 100%;
   display: block;
   border-radius: 8px 0px 0px 8px;
-  border: 1px solid #EDF5E1;
+  border: 1px solid #c7c7c7;
 }
 
 .add-product-input:focus {
-  border-color: #05386B ;
-  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075),0 0 0 3px rgba(0, 126, 255, 0.1);
+  box-shadow: -6px 6px 6px 0 rgba(8, 179, 228, 0.3);
   outline: none;
 }
 
 .button-add-product {
-  color: #ffffff !important; 
+  color: #eff9fc !important; 
   padding: .5rem !important;
   font-size: 15px !important;
   font-weight: 700;
-  background-color: #000000 !important;
+  background-color: #08b3e4;
+  border: 0px !important;
   border-radius: 0px 10px 10px 0px !important;
   cursor: pointer !important;
-  border: 0px !important;
 }
 
 .button-add-product:hover {
-  background-color: #EDF5E1 !important;
-  color: #000000 !important;
-  border-left: 1px solid black !important;
+  background-color: #69747a;
+  border-color: #eff9fc;
 }
 
 .button-goto-wishlist {
@@ -499,21 +516,21 @@ button + button {
   width: 900px;
   font-size: 30px;
   font-weight: 700;
-  color: #EDF5E1;
+  color: #05386B;
 }
 
 .add-product-subheader {
   width: 900px;
   font-size: 25px;
   font-weight: 700;
-  color: #EDF5E1;
+  color: #05386B;
 }
 
 .add-product-main {
   width: 900px;
   font-size: 20px;
   font-weight: 500;
-  color: #EDF5E1;
+  color: #05386B;
 }
 
 .website-icon {
@@ -521,10 +538,10 @@ button + button {
   width: 80px;
   border-radius: 6px;
   cursor: pointer;
-  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.205), 0 3px 10px 0 rgba(255, 255, 255, 0.205);
+  box-shadow: 0 4px 8px 0 rgba(8, 179, 228, 0.2), 0 3px 10px 0 rgba(8, 179, 228, 0.2);
   margin: 10px;
 }
 
 .website-icon:hover {
-  box-shadow: 0 6px 10px 0 rgba(255, 255, 255, 0.226), 0 8px 20px 0 rgba(255, 255, 255, 0.226);
+  box-shadow: 0 6px 10px 0 rgba(8, 179, 228, 0.2), 0 8px 20px 0 rgba(8, 179, 228, 0.2);
 }
