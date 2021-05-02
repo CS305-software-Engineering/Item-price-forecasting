@@ -8,18 +8,18 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage:`url(${bg2})`,
+    backgroundImage: `url(${bg2})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     height: "100vh"
   },
-  logincon:{
-      justifyContent: "center",
-      alignItems: "center",
+  logincon: {
+    justifyContent: "center",
+    alignItems: "center",
   },
-  signupside:{
-      height: "100vh"
+  signupside: {
+    height: "100vh"
   }
 }));
 
@@ -30,7 +30,7 @@ export default function Signup() {
       <CssBaseline />
       <Grid item xs={false} sm={3} md={6} className={classes.image} />
       <Grid item xs={12} sm='auto' md={6} component={Paper} className={classes.signupside}>
-          <Helper />
+        <Helper />
       </Grid>
     </Grid>
   );
