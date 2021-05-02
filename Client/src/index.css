@@ -377,7 +377,7 @@ button + button {
 .wishlist-grid-container {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(375px, 1fr) );
+  grid-template-columns: repeat( auto-fit, minmax(400px, 1fr) );
   padding: 20px 40px 20px 40px;
   margin: auto;
   grid-column-gap: 40px;
