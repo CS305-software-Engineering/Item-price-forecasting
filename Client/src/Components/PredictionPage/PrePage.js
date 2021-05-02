@@ -19,7 +19,7 @@ const PrePage = (props) => {
     const [loading, setLoading] = useState(true);
     const stateObject = useLocation();
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/predprices?pid=${stateObject.customProps.pid}`)
+        axios.get(process.env.REACT_APP_BACKEND_URL + `api/predprices?pid=${stateObject.customProps.pid}`)
             .then((response) => {
                 console.log(response);
                 timeLine = response.data.map((datapoint) => {
@@ -54,12 +54,12 @@ const PrePage = (props) => {
                     </div>
                 </div>
                 <div className="lower-main-predict">
-                    <Button type="primary">
+                    <Button type="primary" style={{backgroundColor: "black",borderColor: "black"}}>
                         <Link to="/">
                             Back to Wishlist
                     </Link>
                     </Button>
-                    <Button type="primary">
+                    <Button type="primary" style={{backgroundColor: "black",borderColor: "black"}}>
                         <a href={link} target="_blank">
                             Product Website
                     </a>
