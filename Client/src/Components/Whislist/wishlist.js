@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Item from "../Item/Item";
 import Loader from '../Loader/loader';
 import axios from 'axios';
+import { message } from 'antd';
+import { GET_USER_ENDPOINT, WISHLIST_ENDPOINT } from '../../API';
 
 export default function Whislist(props) {
 
@@ -10,13 +12,13 @@ export default function Whislist(props) {
 
   useEffect(() => {
     const jwtToken = localStorage.getItem('jwt');
-    axios.post(process.env.REACT_APP_BACKEND_URL + `api/auth/user`, {
+    axios.post(GET_USER_ENDPOINT, {
       token: jwtToken,
     })
       .then(response => {
         console.log('Fetch Wishlist Get User', response);
         const username = response.data[0].username;
-        axios.get(process.env.REACT_APP_BACKEND_URL + `api/wishlist?username=${username}`)
+        axios.get(`${WISHLIST_ENDPOINT}?username=${username}`)
           .then(res => {
             console.log('Fetch Wishlist', res);
             setWishlist(res.data.map((item) => {
@@ -26,10 +28,12 @@ export default function Whislist(props) {
           })
           .catch(err => {
             console.log('Fetch Wishlist Error', err);
+            message.error("Error Occured in getting the wishlist, please reload the page");
           })
       })
       .catch(error => {
         console.log("Fetch Wishlist GET user Error", error);
+        message.error("Error Occured in getting the wishlist, please reload the page");
       })
   }, []);
 
