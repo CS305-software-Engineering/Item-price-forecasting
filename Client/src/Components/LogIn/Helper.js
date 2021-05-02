@@ -80,7 +80,8 @@ export default function Helper() {
             initialValues={{ username: "", password: "" }}
             onSubmit={(values) => {
               const endpoint =
-                "http://127.0.0.1:8000" + "/api/auth/login";
+                process.env.REACT_APP_BACKEND_URL + "/api/auth/login";
+                console.log(endpoint);
               axios({
                 method: "post",
                 url: endpoint,

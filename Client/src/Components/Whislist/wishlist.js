@@ -10,13 +10,13 @@ export default function Whislist(props) {
 
   useEffect(() => {
     const jwtToken = localStorage.getItem('jwt');
-    axios.post(`http://127.0.0.1:8000/api/auth/user`, {
+    axios.post(process.env.REACT_APP_BACKEND_URL + `api/auth/user`, {
       token: jwtToken,
     })
       .then(response => {
         console.log('Fetch Wishlist Get User', response);
         const username = response.data[0].username;
-        axios.get(`http://127.0.0.1:8000/api/wishlist?username=${username}`)
+        axios.get(process.env.REACT_APP_BACKEND_URL + `api/wishlist?username=${username}`)
           .then(res => {
             console.log('Fetch Wishlist', res);
             setWishlist(res.data.map((item) => {
