@@ -334,7 +334,7 @@ button + button {
   flex-direction: column;
   justify-content: center;
   background-color: #eff9fc;
-  box-shadow: 4px 4px 4px 0 rgba(8, 179, 228, 0.3);
+  box-shadow: 4px -4px 4px 0 rgba(8, 179, 228, 0.3);
   border: 1px solid #c7c7c7;
 }
 
@@ -398,12 +398,13 @@ button + button {
   padding: 0px;
   background-color: #eff9fc;
   box-shadow: 4px -4px 4px 0 rgba(8, 179, 228, 0.3);
-  max-width: 420px;
+  max-width: 440px;
   border: 1px solid #c7c7c7;
+  transition: box-shadow 0.6s linear;
 }
 
 .wish-card:hover {
-  box-shadow: 6px -6px 6px 0 rgba(8, 179, 228, 0.3);
+  box-shadow: 4px -4px 4px 0 rgba(8, 179, 228, 1);
 }
 
 .productname {
@@ -423,10 +424,11 @@ button + button {
   border-color: #eff9fc;
   border-top: 0px;
   border-bottom: 0px;
+  transition: background-color 0.6s linear;
 }
 
 .wishlist-button:hover {
-  background-color: #69747a;
+  background-color: #14589c;
   border-color: #eff9fc;
   font-weight: 600;
 }
@@ -496,10 +498,11 @@ button + button {
   border: 0px !important;
   border-radius: 0px 10px 10px 0px !important;
   cursor: pointer !important;
+  transition: background-color 0.6s linear;
 }
 
 .button-add-product:hover {
-  background-color: #69747a;
+  background-color: #14589c;
   border-color: #eff9fc;
 }
 
@@ -544,4 +547,34 @@ button + button {
 
 .website-icon:hover {
   box-shadow: 0 6px 10px 0 rgba(8, 179, 228, 0.2), 0 8px 20px 0 rgba(8, 179, 228, 0.2);
+}
+
+.studbutton {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.studbutton:after, .studbutton:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: 2px solid #05386B;
+  transition: transform 0.2s;
+}
+.studbutton:after {
+  transform: translate(3px, 3px);
+}
+.studbutton:before {
+  transform: translate(-3px, -3px);
+}
+.studbutton:hover:after, .studbutton:hover:before {
+  transform: translate(0);
 }

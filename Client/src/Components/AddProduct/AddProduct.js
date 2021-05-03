@@ -33,7 +33,9 @@ const validationSchema = Yup.object({
 
 
 const AddProduct = () => {
-
+    const handleReload = () => {
+        window.location.reload();
+    }
     const formSubmitHandler = (values) => {
         const jwttoken = localStorage.getItem('jwt');
         const tokenData = {
@@ -99,7 +101,7 @@ const AddProduct = () => {
                         <span><img src={snapdeal} className="website-icon" /></span>
                     </div>
                     <div className="add-product-main" style={{ marginTop: "10px" }}>
-                        To view added products goto <Button size="large" type="primary" className="button-goto-wishlist">My Wishlist</Button>
+                        To view added products goto <button className="studbutton" style={{marginLeft: "10px"}} onClick={handleReload}>My Wishlist</button>
                     </div>
                 </div>
             </Form>
