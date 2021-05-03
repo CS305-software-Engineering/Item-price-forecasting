@@ -38,16 +38,20 @@ export default function Whislist(props) {
   }, []);
 
   return (
-    !loading ? (<div className="wishlist-grid-container">
-      {wishlist.map((wishItem) => {
-        return (
-          <div className="wishlist-grid-item" key={wishItem.pid}>
-            <Item
-              {...wishItem}
-            />
-          </div>
-        )
-      })}
-    </div>) : (<Loader />)
+    !loading ?
+      <div className="wishlist-grid-container">
+        {wishlist.map((wishItem) => {
+          return (
+            <div className="wishlist-grid-item" key={wishItem.pid}>
+              <Item
+                {...wishItem}
+              />
+            </div>
+          )
+        })}
+      </div> :
+      <div style={{ alignItems: 'center', justifyContent: 'center', display: 'flex', height: '100vh' }}>
+        <Loader />
+      </div>
   );
 }
