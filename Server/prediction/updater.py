@@ -8,8 +8,8 @@ from core.tracker import parseProductPage
 def updatePrice():
     #obj = product.objects.raw("SELECT DISTINCT pid, domain, url FROM prediction_product")
     curr_hour = datetime.now().hour
-    # if curr_hour != 14:
-    #     return
+    if curr_hour!=14:
+        return
 
     m = []
     obj = product.objects.all()
@@ -29,5 +29,6 @@ def updatePrice():
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(updatePrice, 'interval', minutes=3)
+    updatePrice()
+    scheduler.add_job(updatePrice, 'interval', minutes=60)
     scheduler.start()
