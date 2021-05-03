@@ -40,7 +40,6 @@ const AddProduct = () => {
         }
         axios.post(GET_USER_ENDPOINT, tokenData)
             .then(res => {
-                console.log(res.data);
                 const queryData = {
                     url: values.link,
                     username: res.data[0].username
@@ -52,8 +51,14 @@ const AddProduct = () => {
                             window.location.reload();
                         }, 1800);
                     })
-                    .catch(err => {
-                        message.error(err);
+                    .catch(e => {
+                        const status = e.response.status
+                        if (status === 409) {
+                            message.info('Product Already Exists in Wishlist');
+                        }
+                        else {
+                            message.error('Something Went Wrong')
+                        }
                     });
             })
             .catch(err => {
@@ -74,7 +79,7 @@ const AddProduct = () => {
                     <div className="add-product-subheader">
                         We allow our customers to:
                     </div>
-                    <div className="add-product-main" style={{color: "#05386B"}}>
+                    <div className="add-product-main" style={{ color: "#05386B" }}>
                         <CheckCircleFilled style={{ color: "#08b3e4" }} /> Predict Future Prices<span style={{ color: "#eff9fc" }}>.....</span>
                         <CheckCircleFilled style={{ color: "#08b3e4" }} /> Track Product Prices<span style={{ color: "#eff9fc" }}>.....</span>
                         <CheckCircleFilled style={{ color: "#08b3e4" }} /> Track Product Stock<span style={{ color: "#eff9fc" }}>.....</span>
@@ -99,7 +104,7 @@ const AddProduct = () => {
                         <span><img src={snapdeal} className="website-icon" /></span>
                     </div>
                     <div className="add-product-main" style={{ marginTop: "10px" }}>
-                        To view added products goto <button className="studbutton" style={{marginLeft: "10px"}} onClick={handleReload}>My Wishlist</button>
+                        To view added products goto <button className="studbutton" style={{ marginLeft: "10px" }} onClick={handleReload}>My Wishlist</button>
                     </div>
                 </div>
             </Form>

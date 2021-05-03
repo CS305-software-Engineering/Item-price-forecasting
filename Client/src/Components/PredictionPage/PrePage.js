@@ -5,7 +5,7 @@ import { Button } from "antd";
 import { Link, useLocation } from "react-router-dom";
 import axios from 'axios';
 import Loader from '../Loader/loader';
-import { PREDICTION_ENDPOINT } from '../../API';
+import { PREDICTION_ENDPOINT, PRICE_HISTORY_ENDPOINT } from '../../API';
 
 import { Tabs } from 'antd';
 
@@ -23,12 +23,13 @@ const PrePage = (props) => {
     const [loading, setLoading] = useState(true);
     const [timeline, setTimeline] = useState(null);
     const [dataset, setDataset] = useState(null);
+    const [isPredictionTab, setIsPredictionTab] = useState(true);
 
     const stateObject = useLocation();
     useEffect(() => {
-        axios.get(`${PREDICTION_ENDPOINT}?pid=${stateObject.customProps.pid}`)
+        console.log(isPredictionTab ? PREDICTION_ENDPOINT : PRICE_HISTORY_ENDPOINT);
+        axios.get(`${isPredictionTab ? PREDICTION_ENDPOINT : PRICE_HISTORY_ENDPOINT}?pid=${stateObject.customProps.pid}`)
             .then((response) => {
-                console.log(response);
                 const fetchedTimeLine = response.data.map((datapoint) => {
                     return datapoint.date;
                 });
@@ -40,16 +41,19 @@ const PrePage = (props) => {
                 setLoading(false);
             })
             .catch((err) => {
-                console.log(err);
                 setLoading(false);
             });
-    }, [])
+    }, [isPredictionTab]);
+
+    const TabChangeHandler = () => {
+        setIsPredictionTab(!isPredictionTab);
+    }
 
     return (
         !loading ? (
             <div className="predict-base">
                 <div className="main-predict">
-                    <Tabs defaultActiveKey="1" centered>
+                    <Tabs defaultActiveKey="1" centered onChange={TabChangeHandler}>
                         <TabPane tab="PREDICT PRICE" key="1">
                             <div className="upper-main-predict">
                                 <Handlestring min={min} />
@@ -66,12 +70,12 @@ const PrePage = (props) => {
                                 </div>
                             </div>
                             <div className="lower-main-predict">
-                                <Button type="primary" className="wishlist-button" style={{width: "250px"}}>
+                                <Button type="primary" className="wishlist-button" style={{ width: "250px" }}>
                                     <Link to="/">
                                         Back to Wishlist
                                 </Link>
                                 </Button>
-                                <Button type="primary" className="wishlist-button" style={{width: "250px"}}>
+                                <Button type="primary" className="wishlist-button" style={{ width: "250px" }}>
                                     <a href={link} target="_blank">
                                         Product Website
                                 </a>
@@ -91,12 +95,12 @@ const PrePage = (props) => {
                                 </div>
                             </div>
                             <div className="lower-main-predict">
-                                <Button type="primary" className="wishlist-button" style={{width: "250px"}}>
+                                <Button type="primary" className="wishlist-button" style={{ width: "250px" }}>
                                     <Link to="/">
                                         Back to Wishlist
                                 </Link>
                                 </Button>
-                                <Button type="primary" className="wishlist-button" style={{width: "250px"}}>
+                                <Button type="primary" className="wishlist-button" style={{ width: "250px" }}>
                                     <a href={link} target="_blank">
                                         Product Website
                                 </a>

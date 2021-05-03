@@ -96,7 +96,6 @@ export default function Helper() {
                 })
                 .catch((e) => {
                   status = e.response.status;
-                  console.log(e.response);
                   if (status == 404) {
                     message.error("User Not Found, Please Signup");
                   } else if (status == 403) {

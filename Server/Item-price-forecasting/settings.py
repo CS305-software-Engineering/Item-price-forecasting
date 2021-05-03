@@ -30,7 +30,7 @@ SECRET_KEY = 'sk#-pk)59!639plw659xo_1&)64be9za-^+55gk#n8jdg(b=$3'
 DEBUG = not os.getenv('GAE_APPLICATION', None)
 
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
