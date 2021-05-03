@@ -7,21 +7,11 @@ import axios from 'axios';
 import Loader from '../Loader/loader';
 import { PREDICTION_ENDPOINT } from '../../API';
 
-const link = "https://www.flipkart.com/";
-let timeLine = ['11 April', '12 April', '13 April', '14 April', '15 April', '16 April', '17 April'];
-let datasetArray = [80, 110, 120, 100, 90, 100, 105];
-const typeodData = "Price Prediction";
 import { Tabs } from 'antd';
 
 const { TabPane } = Tabs;
 
-function callback(key) {
-    console.log(key);
-  }
-
 const link = "https://www.flipkart.com/";
-let timeLine = ['11 April', '12 April', '13 April', '14 April', '15 April', '16 April', '17 April'];
-let dataset = [80, 110, 120, 100, 90, 100, 105];
 const typeodData1 = "Price Prediction";
 const typeodData2 = "Price History";
 const min = 0;
@@ -59,7 +49,7 @@ const PrePage = (props) => {
         !loading ? (
             <div className="predict-base">
                 <div className="main-predict">
-                    <Tabs defaultActiveKey="1" onChange={callback} centered>
+                    <Tabs defaultActiveKey="1" centered>
                         <TabPane tab="PREDICT PRICE" key="1">
                             <div className="upper-main-predict">
                                 <Handlestring min={min} />
@@ -69,7 +59,7 @@ const PrePage = (props) => {
                                     <LineChart
                                         dataSet={dataset}
                                         legend={typeodData1}
-                                        timeLine={timeLine}
+                                        timeLine={timeline}
                                         width={400}
                                         height={400}
                                     />
@@ -94,7 +84,7 @@ const PrePage = (props) => {
                                     <LineChart
                                         dataSet={dataset}
                                         legend={typeodData2}
-                                        timeLine={timeLine}
+                                        timeLine={timeline}
                                         width={400}
                                         height={400}
                                     />
