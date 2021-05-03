@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Box from "@material-ui/core/Box";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
@@ -10,6 +10,8 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { Formik } from "formik";
 import Loader from "../Loader/loader";
+import { message } from 'antd';
+import { LOGIN_ENDPOINT } from '../../API';
 
 const useStyles = makeStyles((theme) => ({
   avatarClass: {
@@ -79,11 +81,9 @@ export default function Helper() {
           <Formik
             initialValues={{ username: "", password: "" }}
             onSubmit={(values) => {
-              const endpoint =
-                "http://127.0.0.1:8000" + "/api/auth/login";
               axios({
                 method: "post",
-                url: endpoint,
+                url: LOGIN_ENDPOINT,
                 data: {
                   username: values.username,
                   password: values.password,
@@ -98,11 +98,11 @@ export default function Helper() {
                   status = e.response.status;
                   console.log(e.response);
                   if (status == 404) {
-                    alert("user not found, signup first");
+                    message.error("User Not Found, Please Signup");
                   } else if (status == 403) {
-                    alert("Wrong Password");
+                    message.error("Wrong Password");
                   } else {
-                    alert("something went wrong please try again");
+                    message.error("Something went wrong! Please try again");
                   }
                 });
             }}

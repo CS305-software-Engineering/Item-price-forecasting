@@ -2,14 +2,15 @@ import React from 'react';
 import { Formik, ErrorMessage, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { Alert, Button } from 'antd';
-import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
+import { Button, message } from 'antd';
+import { CheckCircleFilled } from '@ant-design/icons';
 import styled from 'styled-components';
 import alibaba from '../../common/images/ali.png';
 import amazon from '../../common/images/ama.png';
 import flipkart from '../../common/images/fl.png';
 import bewakoof from '../../common/images/bew.png';
 import snapdeal from '../../common/images/snap.jpeg';
+import { GET_USER_ENDPOINT, WISHLIST_ENDPOINT } from '../../API';
 
 const initialValues = {
     link: '',
@@ -22,10 +23,6 @@ const Error = styled.div`
     margin: 0.25rem;
 `
 
-const API = {
-    URL: 'http://127.0.0.1:8000/api/wishlist/',
-}
-
 const validationSchema = Yup.object({
     link: Yup.string().required('Required !').url('Enter Valid URL !'),
 });
@@ -35,30 +32,31 @@ const validationSchema = Yup.object({
 const AddProduct = () => {
 
     const formSubmitHandler = (values) => {
-        console.log("lawda mera");
         const jwttoken = localStorage.getItem('jwt');
         const tokenData = {
             token: jwttoken
         }
-        axios.post(`http://127.0.0.1:8000/api/auth/user`, tokenData)
+        axios.post(GET_USER_ENDPOINT, tokenData)
             .then(res => {
                 console.log(res.data);
                 const queryData = {
                     url: values.link,
                     username: res.data[0].username
                 }
-                axios.post(`${API.URL}`, queryData)
+                axios.post(WISHLIST_ENDPOINT, queryData)
                     .then(response => {
-                        console.log(response.data);
+                        message.success("Product Added to wishlist Successfully");
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1800);
                     })
                     .catch(err => {
-                        console.log(err);
+                        message.error(err);
                     });
             })
             .catch(err => {
-                console.log("Server Error")
+                message.error(err);
             })
-        // console.log(values);
     }
 
     return (
@@ -69,15 +67,15 @@ const AddProduct = () => {
             <Form>
                 <div className="add-product">
                     <div className="add-product-header">
-                        Allow <span style={{ color: "#05386B" }}>WISHIMART</span> to let you become a Smart Shopper!
+                        Allow <span style={{ color: "#5CDB95" }}>WISHIMART</span> to let you become a Smart Shopper!
                     </div>
                     <div className="add-product-subheader">
                         We allow our customers to:
                     </div>
-                    <div className="add-product-main">
-                        <CheckCircleFilled style={{ color: "#379683" }} /> Predict Future Prices<span style={{ color: "#5CDB95" }}>.....</span>
-                        <CheckCircleFilled style={{ color: "#379683" }} /> Track Product Prices<span style={{ color: "#5CDB95" }}>.....</span>
-                        <CheckCircleFilled style={{ color: "#379683" }} /> Track Product Stock<span style={{ color: "#5CDB95" }}>.....</span>
+                    <div className="add-product-main" style={{ color: "#5CDB95" }}>
+                        <CheckCircleFilled style={{ color: "#EDF5E1" }} /> Predict Future Prices<span style={{ color: "#05386B" }}>.....</span>
+                        <CheckCircleFilled style={{ color: "#EDF5E1" }} /> Track Product Prices<span style={{ color: "#05386B" }}>.....</span>
+                        <CheckCircleFilled style={{ color: "#EDF5E1" }} /> Track Product Stock<span style={{ color: "#05386B" }}>.....</span>
                     </div>
                     <div className="add-product-grid-1">
                         <div className="add-product-grid-1-item-1">
@@ -103,6 +101,7 @@ const AddProduct = () => {
                     </div>
                 </div>
             </Form>
+
         </Formik >
     );
 }

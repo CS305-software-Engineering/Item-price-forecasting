@@ -9,6 +9,8 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import Loader from "../Loader/loader";
+import { message } from 'antd';
+import { SIGNUP_ENDPOINT } from '../../API';
 
 const schema = yup.object().shape({
   username: yup.string().email("Please enter a valid email").required(),
@@ -90,26 +92,23 @@ export default function Helper() {
           <Formik
             initialValues={{ username: "", password: "", password2: "" }}
             onSubmit={(values) => {
-              const endpoint =
-                "http://127.0.0.1:8000" + "/api/auth/register";
-              console.log(endpoint);
               axios({
                 method: "post",
-                url: endpoint,
+                url: SIGNUP_ENDPOINT,
                 data: {
                   username: values.username,
                   password: values.password,
                 },
               })
                 .then(() => {
-                  alert("Voila! You may login now");
+                  message.success("Voila! You may login now");
                 })
                 .catch((e) => {
                   status = e.response.status;
                   if (status == 409) {
-                    alert("username already present");
+                    message.error("Username already present");
                   } else {
-                    alert("Something went wrong");
+                    message.error("Something went wrong");
                   }
                 });
             }}
