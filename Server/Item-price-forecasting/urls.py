@@ -25,3 +25,5 @@ urlpatterns = [
     path('api/predprices', PredictedPriceView.as_view(), name="Predicted Prices"),
     path('api/deleteWishlist', DeleteView.as_view(), name='Deleted Items'),
 ]
+
+admin.site.site_header = 'WishiMart Admin'
