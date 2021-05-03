@@ -9,6 +9,6 @@ cloud_sql_proxy.exe
 .env
 output.html
 env
-static
+
 
 
