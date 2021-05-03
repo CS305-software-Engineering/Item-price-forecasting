@@ -38,7 +38,7 @@ export default function Whislist(props) {
   }, []);
 
   return (
-    <div className="wishlist-grid-container">
+    !loading ? (<div className="wishlist-grid-container">
       {wishlist.map((wishItem) => {
         return (
           <div className="wishlist-grid-item" key={wishItem.pid}>
@@ -48,6 +48,6 @@ export default function Whislist(props) {
           </div>
         )
       })}
-    </div>
+    </div>) : (<Loader />)
   );
 }
