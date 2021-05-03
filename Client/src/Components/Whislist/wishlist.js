@@ -38,6 +38,7 @@ export default function Whislist(props) {
   }, []);
 
   return (
+    !loading?
     <div className="wishlist-grid-container">
       {wishlist.map((wishItem) => {
         return (
@@ -48,6 +49,9 @@ export default function Whislist(props) {
           </div>
         )
       })}
+    </div>:
+    <div style={{ alignItems: 'center', justifyContent: 'center', display: 'flex', height: '100vh' }}>
+      <Loader />
     </div>
   );
 }
