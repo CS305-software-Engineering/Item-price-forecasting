@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Tabs, Button, Divider, Checkbox } from "antd";
+import { Tabs, Button } from "antd";
 import logo from "../../common/images/logo_cropped.png";
-import logout from "../../common/images/logout.svg";
 import { LogoutOutlined } from "@ant-design/icons";
 import AddProduct from "../AddProduct/AddProduct";
 import Wishlist from "../Whislist/wishlist";
@@ -10,45 +9,8 @@ import Loader from "../Loader/loader";
 
 const { TabPane } = Tabs;
 
-// const OperationsSlot = {
-//   left: (
-//     <div>
-//       <img src={logo} />
-//     </div>
-//   ),
-//   right: (
-//     <div>
-//       <Button
-//         icon={<LogoutOutlined />}
-//         size="medium"
-//         type="primary"
-//         shape="round"
-//         className="button-LOGOUT"
-//         onClick={() => {
-//           localStorage.removeItem("jwt");
-
-//         }}
-//       >
-//         LOGOUT
-//       </Button>
-//     </div>
-//   ),
-// };
-
 const index = () => {
-  // /*this.state = {
-  //       activeTab: "1"
-  //   };
-  //   changeTab = activeKey => {
-  //       console.log(activeKey);
-  //       this.setState({
-  //       activeTab: "1"
-  //       });
-  //   };
   const [tab, setTab] = useState("1")
-  const goToWishlist = () => {
-
-  }
   const OperationsSlot = {
     left: (
       <div>

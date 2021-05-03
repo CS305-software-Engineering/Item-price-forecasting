@@ -16,38 +16,38 @@ export default function Whislist(props) {
       token: jwtToken,
     })
       .then(response => {
-        console.log('Fetch Wishlist Get User', response);
         const username = response.data[0].username;
         axios.get(`${WISHLIST_ENDPOINT}?username=${username}`)
           .then(res => {
-            console.log('Fetch Wishlist', res);
             setWishlist(res.data.map((item) => {
               return { ...item };
             }));
             setLoading(false);
           })
           .catch(err => {
-            console.log('Fetch Wishlist Error', err);
             message.error("Error Occured in getting the wishlist, please reload the page");
           })
       })
       .catch(error => {
-        console.log("Fetch Wishlist GET user Error", error);
         message.error("Error Occured in getting the wishlist, please reload the page");
       })
   }, []);
 
   return (
-    <div className="wishlist-grid-container">
-      {wishlist.map((wishItem) => {
-        return (
-          <div className="wishlist-grid-item" key={wishItem.pid}>
-            <Item
-              {...wishItem}
-            />
-          </div>
-        )
-      })}
-    </div>
+    !loading ?
+      <div className="wishlist-grid-container">
+        {wishlist.map((wishItem) => {
+          return (
+            <div className="wishlist-grid-item" key={wishItem.pid}>
+              <Item
+                {...wishItem}
+              />
+            </div>
+          )
+        })}
+      </div> :
+      <div style={{ alignItems: 'center', justifyContent: 'center', display: 'flex', height: '100vh' }}>
+        <Loader />
+      </div>
   );
 }

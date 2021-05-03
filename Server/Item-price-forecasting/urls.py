@@ -23,4 +23,5 @@ urlpatterns = [
     path('api/wishlist/', ProductView.as_view(), name="Wishlist"),
     path('api/trackedprices', TrackedPriceView.as_view(), name="Tracked Prices"),
     path('api/predprices', PredictedPriceView.as_view(), name="Predicted Prices"),
+    path('api/deleteWishlist', DeleteView.as_view(), name='Deleted Items'),
 ]

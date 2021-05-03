@@ -35,14 +35,24 @@ class ProductView(APIView):
             "pid": trackerObj['pid'],
             "url": url
         }
+        if len(product.objects.filter(username=data['username']).filter(pid=data['pid'])) > 0:
+            return Response("Product Already in wishlist", status=status.HTTP_409_CONFLICT)
+
         serializer = ProductSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
         # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-    def delete(self, request):
+
+
+class DeleteView(APIView):
+    queryset = product.objects.all()
+
+    serializer_class = ProductSerializer
+
+    def post(self, request):
         reqdata = request.data
+        print(reqdata)
         username = reqdata['username']
         pid = reqdata['pid']
         product.objects.filter(pid=pid).filter(username=username).delete()
