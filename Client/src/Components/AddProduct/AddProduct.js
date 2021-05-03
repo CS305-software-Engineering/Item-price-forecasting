@@ -97,11 +97,11 @@ const AddProduct = () => {
                         Websites supported:
                     </div>
                     <div className="add-product-main">
-                        <span><img src={amazon} className="website-icon" alt="amazon.in" /></span>
-                        <span><img src={flipkart} className="website-icon" /></span>
-                        <span><img src={alibaba} className="website-icon" /></span>
-                        <span><img src={bewakoof} className="website-icon" /></span>
-                        <span><img src={snapdeal} className="website-icon" /></span>
+                        <a href="https://www.amazon.in/" target="_blank"><span><img src={amazon} className="website-icon" alt="amazon.in" /></span></a>
+                        <a href="https://www.flipkart.com" target="_blank"><span><img src={flipkart} className="website-icon" /></span></a>
+                        <a href="https://www.alibaba.com" target="_blank"><span><img src={alibaba} className="website-icon" /></span></a>
+                        <a href="https://www.bewakoof.com" target="_blank"><span><img src={bewakoof} className="website-icon" /></span></a>
+                        <a href="https://www.snapdeal.com" target="_blank"><span><img src={snapdeal} className="website-icon" /></span></a>
                     </div>
                     <div className="add-product-main" style={{ marginTop: "10px" }}>
                         To view added products goto <button className="studbutton" style={{ marginLeft: "10px" }} onClick={handleReload}>My Wishlist</button>
