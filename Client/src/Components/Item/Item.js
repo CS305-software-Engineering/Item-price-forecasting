@@ -75,6 +75,7 @@ export default function Item(props) {
             pathname: '/predict',
             customProps: {
               pid: props.pid,
+              url: props.url,
             }
           }}>
             Predict Price
