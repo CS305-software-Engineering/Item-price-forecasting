@@ -24,6 +24,7 @@ const PrePage = (props) => {
     const [timeline, setTimeline] = useState(null);
     const [dataset, setDataset] = useState(null);
     const [isPredictionTab, setIsPredictionTab] = useState(true);
+    const [minimumPriceIndex, setMinimumPriceIndex] = useState(0);
 
     const stateObject = useLocation();
     useEffect(() => {
@@ -36,6 +37,15 @@ const PrePage = (props) => {
                 const fetchedDataset = response.data.map((datapoint) => {
                     return datapoint.price;
                 });
+                const minIndex = 0;
+                const minPrice = fetchedDataset[0];
+                for (let i = 1; i < fetchedDataset.length; i++) {
+                    if (minPrice > fetchedDataset[i]) {
+                        minIndex = i;
+                        minPrice = fetchedDataset[i];
+                    }
+                }
+                setMinimumPriceIndex(minIndex);
                 setTimeline(fetchedTimeLine);
                 setDataset(fetchedDataset);
                 setLoading(false);
@@ -56,7 +66,7 @@ const PrePage = (props) => {
                     <Tabs defaultActiveKey="1" centered onChange={TabChangeHandler}>
                         <TabPane tab="PREDICT PRICE" key="1">
                             <div className="upper-main-predict">
-                                <Handlestring min={min} />
+                                <Handlestring min={minimumPriceIndex} />
                             </div>
                             <div className="chart-box">
                                 <div style={{ width: "70%" }}>

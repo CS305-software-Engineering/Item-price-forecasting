@@ -4,6 +4,7 @@ import Loader from '../Loader/loader';
 import axios from 'axios';
 import { message } from 'antd';
 import { GET_USER_ENDPOINT, WISHLIST_ENDPOINT } from '../../API';
+import emptyCart from '../../common/images/EmptyCartBlack.png';
 
 export default function Whislist(props) {
 
@@ -33,10 +34,19 @@ export default function Whislist(props) {
       })
   }, []);
 
+  const emptyWishlist = (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '80vh', justifyContent: 'center', alignItems: 'center' }}>
+      <h1>Your Wishlist is Empty !</h1>
+      <div>
+        <img src={emptyCart} style={{ height: '200px', width: '300px' }} />
+      </div>
+    </div>
+  );
+
   return (
     !loading ?
       <div className="wishlist-grid-container">
-        {wishlist.map((wishItem) => {
+        {wishlist.length === 0 ? emptyWishlist : wishlist.map((wishItem) => {
           return (
             <div className="wishlist-grid-item" key={wishItem.pid}>
               <Item
@@ -46,7 +56,7 @@ export default function Whislist(props) {
           )
         })}
       </div> :
-      <div style={{ alignItems: 'center', justifyContent: 'center', display: 'flex', height: '100vh' }}>
+      <div style={{ alignItems: 'center', justifyContent: 'center', display: 'flex', height: '80vh' }}>
         <Loader />
       </div>
   );
